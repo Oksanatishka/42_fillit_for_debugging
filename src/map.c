@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/14 15:45:52 by pbondoer          #+#    #+#             */
-/*   Updated: 2016/02/09 16:53:22 by pbondoer         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "fillit.h"
 #include "libft.h"
 
@@ -17,7 +5,7 @@
 ** Frees an allocated map structure.
 */
 
-void	free_map(t_map *map)
+void free_map(t_map *map)
 {
 	int i;
 
@@ -35,7 +23,7 @@ void	free_map(t_map *map)
 ** Prints an allocated map structure to standard output.
 */
 
-void	print_map(t_map *map)
+void print_map(t_map *map)
 {
 	int i;
 
@@ -52,11 +40,11 @@ void	print_map(t_map *map)
 ** Allocates a new map structure with specified size.
 */
 
-t_map	*map_new(int size)
+t_map *map_new(int size)
 {
-	t_map	*map;
-	int		i;
-	int		j;
+	t_map *map;
+	int i;
+	int j;
 	// allocate memory for t_map structure
 	map = (t_map *)ft_memalloc(sizeof(t_map));
 	// set size variable in the strucre
@@ -87,7 +75,7 @@ t_map	*map_new(int size)
 ** possible.
 */
 
-int		place(t_etris *tetri, t_map *map, int x, int y)
+int place(t_etris *tetri, t_map *map, int x, int y)
 {
 	int i;
 	int j;
@@ -149,7 +137,7 @@ int		place(t_etris *tetri, t_map *map, int x, int y)
 // BAA
 // BAA
 // BB.
-void	set_piece(t_etris *tetri, t_map *map, t_point *point, char c)
+void set_piece(t_etris *tetri, t_map *map, t_point *point, char c)
 {
 	int i;
 	int j;

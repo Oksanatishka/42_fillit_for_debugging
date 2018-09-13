@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   reader.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/15 17:43:27 by pbondoer          #+#    #+#             */
-/*   Updated: 2016/02/09 16:53:44 by pbondoer         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
 #include "libft.h"
 #include "fillit.h"
@@ -19,7 +7,7 @@
 ** Utility function to get min-max values for get_piece.
 */
 
-void	min_max(char *str, t_point *min, t_point *max)
+void min_max(char *str, t_point *min, t_point *max)
 {
 	int i;
 
@@ -58,14 +46,14 @@ void	min_max(char *str, t_point *min, t_point *max)
 // ##
 // #.
 // #.
-t_etris	*get_piece(char *str, char value)
+t_etris *get_piece(char *str, char value)
 {
 	printf("start get_piece()\n");
-	t_point		*mi;
-	t_point		*max;
-	char		**pos;
-	int			i;
-	t_etris		*tetri;
+	t_point *mi;
+	t_point *max;
+	char **pos;
+	int i;
+	t_etris *tetri;
 
 	// init point structure with x = 3, y = 3
 	mi = point_new(3, 3);
@@ -123,7 +111,7 @@ t_etris	*get_piece(char *str, char value)
 ** valid. Otherwise, our tetrimino is not contiguous.
 */
 
-int		check_connection(char *str)
+int check_connection(char *str)
 {
 	int block;
 	int i;
@@ -152,7 +140,7 @@ int		check_connection(char *str)
 ** Checks character counts and that chunk format is valid.
 */
 
-int		check_counts(char *str, int count)
+int check_counts(char *str, int count)
 {
 	int i;
 	int blocs;
@@ -185,22 +173,21 @@ int		check_counts(char *str, int count)
 ** 4 lines made of 4 chars (+ newline) = 20 chars + sep. newline = 21 chars
 */
 
-t_list	*read_tetri(int fd)
+t_list *read_tetri(int fd)
 {
 	printf("start read_tetri()\n");
-	char	*buf;
-	int		count;
-	t_list	*list;
-	t_etris	*tetris;
-	char	cur;
+	char *buf;
+	int count;
+	t_list *list;
+	t_etris *tetris;
+	char cur;
 
 	buf = ft_strnew(21);
 	list = NULL;
 	cur = 'A';
 	while ((count = read(fd, buf, 21)) >= 20)
 	{
-		if (check_counts(buf, count) != 0
-				|| (tetris = get_piece(buf, cur++)) == NULL)
+		if (check_counts(buf, count) != 0 || (tetris = get_piece(buf, cur++)) == NULL)
 		{
 			ft_memdel((void **)&buf);
 			return (free_list(list));

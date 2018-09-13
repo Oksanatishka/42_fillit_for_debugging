@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   solver.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/02 15:19:32 by pbondoer          #+#    #+#             */
-/*   Updated: 2016/02/12 13:52:08 by pbondoer         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <string.h>
 #include "libft.h"
 #include "fillit.h"
@@ -18,12 +6,12 @@
 ** Backtracking implementation of the solver.
 */
 
-int		solve_map(t_map *map, t_list *list)
+int solve_map(t_map *map, t_list *list)
 {
 	printf("start of solve_map\n");
-	int			x;
-	int			y;
-	t_etris		*tetri;
+	int x;
+	int y;
+	t_etris *tetri;
 
 	// if list NULL return 1 which means end of program
 	if (list == NULL)
@@ -49,11 +37,13 @@ int		solve_map(t_map *map, t_list *list)
 				printf("\n");
 				printf("before interior solve_map()\n");
 				// if current terimino was successfully placed lets try to place next tetrimino
-				if (solve_map(map, list->next)) {
+				if (solve_map(map, list->next))
+				{
 					printf("end of interior solve_map: return 1\n");
 					return (1);
 				}
-				else {
+				else
+				{
 					// if next tetrimino failed to be placed -
 					// remove previous tetrimino from result matrix
 					// and try to shift previous tetrimino (right, bottom, right-bottom)
@@ -63,7 +53,6 @@ int		solve_map(t_map *map, t_list *list)
 					print_map(map);
 					printf("\n");
 				}
-
 			}
 			x++;
 			printf("x++ = %d\n", x);
@@ -79,7 +68,7 @@ int		solve_map(t_map *map, t_list *list)
 ** Gets the rounded up sqrt of a number. Equivalent to ceil(sqrt(n)).
 */
 
-int		high_sqrt(int n)
+int high_sqrt(int n)
 {
 	int size;
 
@@ -93,10 +82,10 @@ int		high_sqrt(int n)
 ** Tries to solve maps starting from the smallest possible size.
 */
 
-t_map	*solve(t_list *list)
+t_map *solve(t_list *list)
 {
-	t_map	*map;
-	int		size;
+	t_map *map;
+	int size;
 
 	// calculate initial size of result matrix, e.g 3x3 or 4x4 or 5x5 and so on
 	// if there is only 1 tetrimino the calculation will be:
